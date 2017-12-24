@@ -1,4 +1,5 @@
 ﻿using System;
+using TwoStepsAuthenticator;
 
 namespace Edi.LightBlog.TOTPUtils
 {
@@ -6,7 +7,9 @@ namespace Edi.LightBlog.TOTPUtils
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var newSecret = Authenticator.GenerateKey(6);
+            Console.WriteLine(newSecret);
+            Console.ReadLine();
         }
     }
 }

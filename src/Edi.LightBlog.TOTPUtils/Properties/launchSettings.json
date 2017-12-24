@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Edi.LightBlog.TOTPUtils": {
+      "commandName": "Project",
+      "commandLineArgs": ""
+    }
+  }
+}
