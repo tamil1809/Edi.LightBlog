@@ -8,6 +8,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @RenderSection("meta", required: false)
     <title>@Settings.Value.Title @ViewData["Title"]</title>
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -25,7 +26,7 @@
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.0.min.js"
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                 asp-fallback-test="window.jQuery"
                 crossorigin="anonymous"
@@ -40,6 +41,7 @@
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
     @RenderSection("head", required: false)
+    @RenderSection("Scripts", required: false)
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -73,6 +75,5 @@
             <p>&copy; @DateTime.UtcNow.Year @Settings.Value.Copyright</p>
         </footer>
     </div>
-    @RenderSection("Scripts", required: false)
 </body>
 </html>

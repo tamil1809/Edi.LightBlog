@@ -28,6 +28,13 @@ namespace Edi.LightBlog.Models
         public int Hits { get; set; }
     }
 
+    public class PostEditModel : Post
+    {
+        public List<Tag> Tags { get; set; }
+
+
+    }
+
     public class PostReadViewModel
     {
         public Post Post { get; set; }

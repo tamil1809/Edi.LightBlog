@@ -16,7 +16,9 @@
 @if (Model.Post.CommentEnabled)
 {
     <section class="comments-form">
-    
+        <form asp-action="WriteComment">
+            
+        </form>
     </section>    
 }
 else
@@ -27,8 +29,11 @@ else
 }
 
 <section class="comments-list">
-    @foreach (var item in Model.Comments)
+    @foreach (var item in Model.Comments.OrderByDescending(c => c.CreateOnUtc))
     {
-        
+        @item.Username
+        @item.Email
+        @item.CreateOnUtc
+        @item.PlainContent
     }
 </section>

@@ -7,6 +7,7 @@ using Edi.LightBlog.Core;
 using Edi.LightBlog.Core.Data;
 using Microsoft.AspNetCore.Mvc;
 using Edi.LightBlog.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -61,7 +62,7 @@ namespace Edi.LightBlog.Controllers
                 var tags = PostTagAssociationRepository.GetTagsByPost(post.Id);
 
                 // get categories
-                // var cats = PostCategoryAssociationRepository
+                var cats = PostCategoryAssociationRepository.GetCatsByPost(post.Id);
 
                 // get comments
                 var cmts = CommentRepository.GetCommentsByPostId(post.Id);
@@ -70,6 +71,7 @@ namespace Edi.LightBlog.Controllers
                 {
                     Post = post,
                     Tags = tags?.ToList() ?? new List<Tag>(),
+                    Categories = cats?.ToList() ?? new List<Category>(),
                     Comments = cmts?.ToList() ?? new List<Comment>()
                 };
                 return View(viewModel);
@@ -78,6 +80,31 @@ namespace Edi.LightBlog.Controllers
             {
                 return NotFound();
             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult WriteComment()
+        {
+            return Json(true);
+        }
+
+        [Authorize]
+        public IActionResult Manage()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Edit(int postId)
+        {
+            return View();
+        }
+
+        [Authorize, HttpPost]
+        public IActionResult Edit(PostEditModel model)
+        {
+            return View();
         }
     }
 }
