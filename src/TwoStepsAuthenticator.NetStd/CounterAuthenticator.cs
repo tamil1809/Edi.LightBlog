@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Edi.LightBlog.Core.TwoStepsAuthenticator
+namespace TwoStepsAuthenticator
 {
 
     /// <summary>

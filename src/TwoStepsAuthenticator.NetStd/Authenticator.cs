@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using TwoStepsAuthenticator;
 
-namespace Edi.LightBlog.Core.TwoStepsAuthenticator
+namespace TwoStepsAuthenticator
 {
     public abstract class Authenticator
     {

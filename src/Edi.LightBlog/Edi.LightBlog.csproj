@@ -28,7 +28,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Core\TwoStepsAuthenticator\" />
     <Folder Include="wwwroot\post-images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TwoStepsAuthenticator.NetStd\TwoStepsAuthenticator.NetStd.csproj" />
   </ItemGroup>
 
 </Project>

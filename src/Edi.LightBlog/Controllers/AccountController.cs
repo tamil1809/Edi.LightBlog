@@ -4,13 +4,13 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Edi.LightBlog.Core;
-using Edi.LightBlog.Core.TwoStepsAuthenticator;
 using Edi.LightBlog.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using TwoStepsAuthenticator;
 
 namespace Edi.LightBlog.Controllers
 {
