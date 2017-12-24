@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Post>
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="row">
+    <div class="col-md-9">
+        <h2 class="page-header">Recent Posts</h2>
+        <section class="post-list">
+            @foreach (var item in Model)
+            {
+                <div class="post-entry-box">
+                    <h4>
+                        <a asp-controller="Post" asp-action="Read" asp-route-slug="@item.Slug">
+                            @item.Title
+                        </a>
+                    </h4>
+                    <p>@item.ContentAbstract</p>
+                    <time>@item.CreateOnUtc</time>
+                </div>
+            }
+        </section>
+    </div>
+    <div class="col-md-3">
+        <aside>
+            <section class="about-blogger">
+                <h3>About</h3>
+                <hr />
+            </section>
+            <section class="top-tags">
+                <h3>Top Tags</h3>
+                <hr />
+            </section>
+        </aside>
+    </div>
+</div>

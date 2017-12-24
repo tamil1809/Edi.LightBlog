@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Tag>
+@{
+    ViewData["Title"] = "Tags";
+}
+
+<h2 class="page-header">Tags</h2>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            <a asp-area="" asp-controller="Tags" asp-action="List" asp-route-normalizedname="@item.NormalizedName">@item.TagName</a>
+        </li>
+    }
+</ul>

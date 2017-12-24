@@ -1,0 +1,34 @@
+﻿@model PostReadViewModel
+
+<article>
+    <h2 class="page-header">@Model.Post.Title</h2>
+    <section class="post-meta">
+        <span>@Model.Post.AuthorName</span>
+        <time>@Model.Post.CreateOnUtc</time>
+        <span>@Model.Post.Hits</span>
+    </section>
+    <section class="post-content">
+        @Html.Raw(Model.Post.HtmlContent)
+    </section>
+</article>
+
+
+@if (Model.Post.CommentEnabled)
+{
+    <section class="comments-form">
+    
+    </section>    
+}
+else
+{
+    <div class="alert alert-warning">
+        Comments are closed.
+    </div>
+}
+
+<section class="comments-list">
+    @foreach (var item in Model.Comments)
+    {
+        
+    }
+</section>

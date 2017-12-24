@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="page-header">Categories</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cat in Model.OrderBy(m => m.Title))
+        {
+            <tr>
+                <td>
+                    <strong>
+                        @cat.Title
+                    </strong>
+                </td>
+                <td>
+                    @cat.Description
+                </td>
+                <td>
+                    <a asp-area="" asp-controller="Category" asp-action="List" asp-route-routename="@cat.RouteName">View</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
