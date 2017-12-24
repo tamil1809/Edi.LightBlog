@@ -2,6 +2,55 @@
 @{
     ViewData["Title"] = "Index";
 }
+<h2 class="page-header">Blog Admin</h2>
+<h3>Management</h3>
 
-<h2>Index</h2>
-
+<h3>Blog Configuration</h3>
+<table class="table table-bordered"></table>
+<h3>Server Information</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Item
+            </th>
+            <th>
+                Value
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>.NET Core CMD Parameter</td>
+            <td>@Environment.CommandLine</td>
+        </tr>
+        <tr>
+            <td>Current Directory</td>
+            <td>@Environment.CurrentDirectory</td>
+        </tr>
+        <tr>
+            <td>Is 64 Bit Operating System</td>
+            <td>@Environment.Is64BitOperatingSystem</td>
+        </tr>
+        <tr>
+            <td>Is 64 Bit Process</td>
+            <td>@Environment.Is64BitProcess</td>
+        </tr>
+        <tr>
+            <td>Machine Name</td>
+            <td>@Environment.MachineName</td>
+        </tr>
+        <tr>
+            <td>OS Version</td>
+            <td>@Environment.OSVersion</td>
+        </tr>
+        <tr>
+            <td>CLR Version</td>
+            <td>@Environment.Version</td>
+        </tr>
+        <tr>
+            <td>Username</td>
+            <td>@Environment.UserName</td>
+        </tr>
+    </tbody>
+</table>

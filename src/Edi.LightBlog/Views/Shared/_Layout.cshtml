@@ -1,7 +1,9 @@
 ﻿@using Edi.LightBlog.Core
+@using Microsoft.AspNetCore.Authentication
 
 @using Microsoft.Extensions.Options;
 @inject IOptions<AppSettings> Settings
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
 <!DOCTYPE html>
 <html>
@@ -63,7 +65,14 @@
                     <li><a asp-area="" asp-controller="About" asp-action="Index">About</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a asp-area="" asp-controller="Account" asp-action="SignIn">Admin</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="SignOut">Sign Out</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="SignIn">Sign In</a></li>
+                    }
                 </ul>
             </div>
         </div>
