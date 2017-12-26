@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Edi.LightBlog.Core;
 using Edi.LightBlog.Core.Data;
+using Edi.LightBlog.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -40,5 +42,54 @@ namespace Edi.LightBlog.Controllers
         {
             return View();
         }
+
+        #region Management
+
+        [Authorize]
+        public IActionResult Manage()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [Authorize, HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(CategoryEditModel model)
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        [Authorize, HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(CategoryEditModel model)
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        [Authorize, HttpPost]
+        [ActionName("Delete")]
+        public IActionResult DeleteConfirm(int id)
+        {
+            return View();
+        }
+
+        #endregion
     }
 }
