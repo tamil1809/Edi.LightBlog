@@ -84,12 +84,19 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content">
+    <div class="container">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.UtcNow.Year @Settings.Value.Copyright</p>
-        </footer>
     </div>
+
+    <footer>
+        <hr />
+        <div class="container">
+            <p>
+                &copy; @DateTime.UtcNow.Year @Settings.Value.Copyright
+                <span class="pull-right">Powered by <a href="https://github.com/EdiWang/Edi.LightBlog" target="_blank">Edi.LightBlog</a> with <a href="http://dot.net" target="_blank">ASP.NET Core 2.0</a></span>
+            </p>
+            <div class="bor-10"></div>
+        </div>
+    </footer>
 </body>
 </html>

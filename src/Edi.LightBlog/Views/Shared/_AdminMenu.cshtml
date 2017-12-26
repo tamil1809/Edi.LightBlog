@@ -9,8 +9,17 @@
     <li role="presentation" class="@(currentAction == "Index" ? "active" : null)">
         <a asp-action="Index" asp-controller="Admin">Dashboard</a>
     </li>
+    <li role="presentation" class="@(currentController == "Post" ? "active" : null)">
+        <a asp-action="Manage" asp-controller="Post">Posts</a>
+    </li>
+    <li role="presentation" class="@(currentController == "Comments" ? "active" : null)">
+        <a asp-action="Manage" asp-controller="Comments">Comments</a>
+    </li>
     <li role="presentation" class="@(currentController == "Category" ? "active" : null)">
-        <a asp-action="Manage" asp-controller="Category">Category</a>
+        <a asp-action="Manage" asp-controller="Category">Categories</a>
+    </li>
+    <li role="presentation" class="@(currentController == "Tags" ? "active" : null)">
+        <a asp-action="Manage" asp-controller="Tags">Tags</a>
     </li>
 </ul>
 

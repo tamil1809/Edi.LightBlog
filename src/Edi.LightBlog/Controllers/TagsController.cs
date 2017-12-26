@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Edi.LightBlog.Core;
 using Edi.LightBlog.Core.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -34,8 +35,14 @@ namespace Edi.LightBlog.Controllers
             return View(tags);
         }
 
-        [Route("tags/{normalizedName}")]
+        [Route("tags/list/{normalizedName}")]
         public IActionResult List(string normalizedName)
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Manage()
         {
             return View();
         }

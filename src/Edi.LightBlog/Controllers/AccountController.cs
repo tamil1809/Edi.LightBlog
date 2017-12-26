@@ -20,13 +20,10 @@ namespace Edi.LightBlog.Controllers
     [Authorize]
     public class AccountController : ControllerBase
     {
-        public IAntiforgery _antiforgery { get; set; }
-
         public AccountController(ILogger<AccountController> logger,
-            IOptions<AppSettings> settings, IAntiforgery antiforgery)
+            IOptions<AppSettings> settings)
             : base(logger, settings)
         {
-            _antiforgery = antiforgery;
         }
 
         [HttpGet]

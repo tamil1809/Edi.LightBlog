@@ -1,8 +1,71 @@
 ﻿@Html.Partial("_AdminMenu")
+@using Edi.LightBlog.Core
+@using Microsoft.Extensions.Options;
+@inject IOptions<AppSettings> Settings
+    
+<h4>Summary</h4>
+<section class="blog-summary">
 
-<h3>Blog Configuration</h3>
-<table class="table table-bordered"></table>
-<h3>Server Information</h3>
+</section>
+
+<h4>Blog Configuration</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Item
+            </th>
+            <th>
+                Value
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                Title
+            </td>
+            <td>
+                @Settings.Value.Title
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Admin Name
+            </td>
+            <td>
+                @Settings.Value.AdminName
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Copyright
+            </td>
+            <td>
+                @Settings.Value.Copyright
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Meta Keyword
+            </td>
+            <td>
+                @Settings.Value.MetaKeyword
+            </td>
+        </tr>
+        <tr>
+            <td>
+                TimeZone
+            </td>
+            <td>
+                @Settings.Value.TimeZone
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h4>Server Information</h4>
 <table class="table table-bordered">
     <thead>
         <tr>
