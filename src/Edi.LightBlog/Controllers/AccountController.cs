@@ -35,7 +35,7 @@ namespace Edi.LightBlog.Controllers
         public async Task<IActionResult> SignIn(string returnUrl = null)
         {
             // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignOutAsync(Constants.CookieAuthenticationSchemeName);
 
             ViewData["ReturnUrl"] = returnUrl;
             return View();
@@ -63,20 +63,20 @@ namespace Edi.LightBlog.Controllers
 
                     var claimsIdentity = new ClaimsIdentity(
                         claims,
-                        CookieAuthenticationDefaults.AuthenticationScheme);
+                        Constants.CookieAuthenticationSchemeName);
                     var principal = new ClaimsPrincipal(claimsIdentity);
 
                     await HttpContext.SignInAsync(
-                        CookieAuthenticationDefaults.AuthenticationScheme, 
+                        Constants.CookieAuthenticationSchemeName, 
                         principal, 
                         new AuthenticationProperties
                         {
                             IsPersistent = false
                         });
 
-                    HttpContext.User = principal;
-                    var tokens = _antiforgery.GetTokens(HttpContext);
-                    _antiforgery.GetAndStoreTokens(HttpContext);
+                    //HttpContext.User = principal;
+                    //var tokens = _antiforgery.GetTokens(HttpContext);
+                    //_antiforgery.GetAndStoreTokens(HttpContext);
 
                     return RedirectToLocal(returnUrl);
                 }
@@ -107,7 +107,7 @@ namespace Edi.LightBlog.Controllers
 
         public async Task<IActionResult> SignOut()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignOutAsync(Constants.CookieAuthenticationSchemeName);
             return RedirectToAction("SignIn");
         }
 

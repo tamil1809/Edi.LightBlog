@@ -34,8 +34,8 @@ namespace Edi.LightBlog
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => {
+            services.AddAuthentication(Constants.CookieAuthenticationSchemeName)
+                    .AddCookie(Constants.CookieAuthenticationSchemeName, options => {
                         options.AccessDeniedPath = "/Account/AccessDenied/";
                         options.LoginPath = "/Account/SignIn/";
                     });
