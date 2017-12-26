@@ -33,6 +33,7 @@ namespace Edi.LightBlog
             services.AddMvc();
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IAppInfomation, AppInfomation>();
 
             services.AddAuthentication(Constants.CookieAuthenticationSchemeName)
                     .AddCookie(Constants.CookieAuthenticationSchemeName, options => {

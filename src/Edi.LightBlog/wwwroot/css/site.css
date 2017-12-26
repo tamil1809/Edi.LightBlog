@@ -12,3 +12,11 @@ body {
     display: block;
     clear: both;
 }
+
+footer {
+    background-color: #FEFEFE;
+}
+
+footer p.p-appinfo {
+    text-align: right;
+}
