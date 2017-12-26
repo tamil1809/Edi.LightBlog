@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Edi.LightBlog.Core;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -33,11 +34,11 @@ namespace Edi.LightBlog
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddAuthentication(Constants.CookieAuthenticationSchemeName)
-                .AddCookie(Constants.CookieAuthenticationSchemeName, options => {
-                    options.AccessDeniedPath = "/Account/AccessDenied/";
-                    options.LoginPath = "/Account/SignIn/";
-                });
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie(options => {
+                        options.AccessDeniedPath = "/Account/AccessDenied/";
+                        options.LoginPath = "/Account/SignIn/";
+                    });
 
             services.AddTransient<IClaimsTransformation, ClaimsTransformer>();
         }

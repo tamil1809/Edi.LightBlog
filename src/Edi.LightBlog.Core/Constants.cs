@@ -4,8 +4,6 @@
     {
         public static string AdminRoleName = "Administrators";
 
-        public static string CookieAuthenticationSchemeName = "LightBlogCookieAuthenticationScheme";
-
         public static string DbConnectionName = "DatabaseConnection";
     }
 

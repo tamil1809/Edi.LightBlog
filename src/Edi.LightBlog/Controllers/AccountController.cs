@@ -5,8 +5,11 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Edi.LightBlog.Core;
 using Edi.LightBlog.Models;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -17,18 +20,22 @@ namespace Edi.LightBlog.Controllers
     [Authorize]
     public class AccountController : ControllerBase
     {
+        public IAntiforgery _antiforgery { get; set; }
+
         public AccountController(ILogger<AccountController> logger,
-            IOptions<AppSettings> settings)
+            IOptions<AppSettings> settings, IAntiforgery antiforgery)
             : base(logger, settings)
         {
+            _antiforgery = antiforgery;
         }
 
         [HttpGet]
         [AllowAnonymous]
+        [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
         public async Task<IActionResult> SignIn(string returnUrl = null)
         {
             // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.SignOutAsync(Constants.CookieAuthenticationSchemeName);
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
             ViewData["ReturnUrl"] = returnUrl;
             return View();
@@ -36,7 +43,6 @@ namespace Edi.LightBlog.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> SignIn(SignInModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -51,10 +57,22 @@ namespace Edi.LightBlog.Controllers
                         new Claim("role","Administrators")
                     };
 
-                    var ci = new ClaimsIdentity(claims, AuthType.TOTP.ToString(), "name", "role");
-                    var p = new ClaimsPrincipal(ci);
+                    var claimsIdentity = new ClaimsIdentity(
+                        claims,
+                        CookieAuthenticationDefaults.AuthenticationScheme);
+                    var principal = new ClaimsPrincipal(claimsIdentity);
 
-                    await HttpContext.SignInAsync(Constants.CookieAuthenticationSchemeName, p);
+                    await HttpContext.SignInAsync(
+                        CookieAuthenticationDefaults.AuthenticationScheme, 
+                        principal, 
+                        new AuthenticationProperties
+                        {
+                            IsPersistent = false
+                        });
+
+                    HttpContext.User = principal;
+                    _antiforgery.GetAndStoreTokens(HttpContext);
+
                     return RedirectToLocal(returnUrl);
                 }
                 else
@@ -84,7 +102,7 @@ namespace Edi.LightBlog.Controllers
 
         public async Task<IActionResult> SignOut()
         {
-            await HttpContext.SignOutAsync(Constants.CookieAuthenticationSchemeName);
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("SignIn");
         }
 

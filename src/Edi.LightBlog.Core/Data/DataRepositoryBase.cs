@@ -13,7 +13,7 @@ namespace Edi.LightBlog.Core.Data
     /// </summary>
     public interface IDatabaseOperators<T>
     {
-        void Create(T entity);
+        int Create(T entity);
 
         IEnumerable<T> Read();
 
@@ -51,13 +51,13 @@ namespace Edi.LightBlog.Core.Data
             }
         }
 
-        public void Create(T entity)
+        public int Create(T entity)
         {
             using (IDbConnection dbConnection = Connection)
             {
                 string sQuery = SqlCreate;
                 dbConnection.Open();
-                dbConnection.Execute(sQuery, entity);
+                return dbConnection.Execute(sQuery, entity);
             }
         }
 

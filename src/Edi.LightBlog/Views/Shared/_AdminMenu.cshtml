@@ -1,0 +1,17 @@
+﻿@{
+    var currentController = ViewContext.RouteData.Values["controller"].ToString();
+    string currentAction = ViewContext.RouteData.Values["action"].ToString();
+}
+
+<h2 class="page-header">Blog Admin</h2>
+
+<ul class="nav nav-tabs">
+    <li role="presentation" class="@(currentAction == "Index" ? "active" : null)">
+        <a asp-action="Index" asp-controller="Admin">Dashboard</a>
+    </li>
+    <li role="presentation" class="@(currentController == "Category" ? "active" : null)">
+        <a asp-action="Manage" asp-controller="Category">Category</a>
+    </li>
+</ul>
+
+<div class="bor-10"></div>

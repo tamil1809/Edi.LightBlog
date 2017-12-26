@@ -1,16 +1,27 @@
 ﻿@model IEnumerable<Edi.LightBlog.Models.Category>
 
-@{
-    ViewData["Title"] = "Manage";
+@Html.Partial("_AdminMenu")
+
+<div class="pull-right">
+    <a asp-action="Create" class="btn btn-success">
+        <i class="fa fa-plus"></i>
+        New
+    </a>
+</div>
+
+<div class="bor-10"></div>
+
+@if (null == Model || !Model.Any())
+{
+    <div class="alert alert-info">
+        <i class="fa fa-info"></i>
+        You don't have any categories yet.
+    </div>
 }
-
-<h2>Manage</h2>
-
-<p>
-    <a asp-action="Create" class="btn btn-success">Create New</a>
-</p>
-<table class="table">
-    <thead>
+else
+{
+    <table class="table table-bordered">
+        <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
@@ -23,8 +34,8 @@
             </th>
             <th></th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         @foreach (var item in Model)
         {
             <tr>
@@ -43,5 +54,6 @@
                 </td>
             </tr>
         }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+}

@@ -14,6 +14,7 @@ using Microsoft.Extensions.Options;
 
 namespace Edi.LightBlog.Controllers
 {
+    [AutoValidateAntiforgeryToken]
     public class CategoryController : ControllerBase
     {
         private IHttpContextAccessor _accessor;
@@ -37,7 +38,7 @@ namespace Edi.LightBlog.Controllers
             return View(cats);
         }
 
-        [Route("category/{routeName}")]
+        [Route("category/list/{routeName}")]
         public IActionResult List(string routeName)
         {
             return View();
@@ -58,20 +59,46 @@ namespace Edi.LightBlog.Controllers
         }
 
         [Authorize, HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Create(CategoryEditModel model)
         {
+            if (ModelState.IsValid)
+            {
+                var cat = new Category()
+                {
+                    Title = model.Title,
+                    RouteName = model.RouteName,
+                    Description = model.Description
+                };
+
+                var rows = CategoryRepository.Create(cat);
+                if (rows > 0)
+                {
+                    return RedirectToAction(nameof(Manage));
+                }
+                ModelState.AddModelError(string.Empty, "Create Category Failed on Data Layer.");
+            }
             return View();
         }
 
         [Authorize]
         public IActionResult Edit(int id)
         {
-            return View();
+            var cat = CategoryRepository.Read(id);
+            if (null != cat)
+            {
+                var catEdit = new CategoryEditModel()
+                {
+                    Id = cat.Id,
+                    Description = cat.Description,
+                    RouteName = cat.RouteName,
+                    Title = cat.Title
+                };
+                return View(catEdit);
+            }
+            return NotFound();
         }
 
         [Authorize, HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Edit(CategoryEditModel model)
         {
             return View();
