@@ -19,9 +19,9 @@ namespace Edi.LightBlog.Core.Data
 
         T Read(object key);
 
-        void Update(T entity);
+        int Update(T entity);
 
-        void Delete(object key);
+        int Delete(object key);
 
         int Count();
     }
@@ -81,23 +81,23 @@ namespace Edi.LightBlog.Core.Data
             }
         }
 
-        public void Update(T entity)
+        public int Update(T entity)
         {
             using (IDbConnection dbConnection = Connection)
             {
                 string sQuery = SqlUpdate;
                 dbConnection.Open();
-                dbConnection.Query(sQuery, entity);
+                return dbConnection.Execute(sQuery, entity);
             }
         }
 
-        public void Delete(object key)
+        public int Delete(object key)
         {
             using (IDbConnection dbConnection = Connection)
             {
                 string sQuery = $"DELETE FROM {TableName} WHERE {PrimaryKeyName} = @Key";
                 dbConnection.Open();
-                dbConnection.Execute(sQuery, new { Key = key });
+                return dbConnection.Execute(sQuery, new { Key = key });
             }
         }
 

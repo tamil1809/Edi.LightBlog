@@ -49,7 +49,8 @@ namespace Edi.LightBlog.Controllers
         [Authorize]
         public IActionResult Manage()
         {
-            return View();
+            var cats = CategoryRepository.Read();
+            return View(cats);
         }
 
         [Authorize]
@@ -101,13 +102,41 @@ namespace Edi.LightBlog.Controllers
         [Authorize, HttpPost]
         public IActionResult Edit(CategoryEditModel model)
         {
+            if (ModelState.IsValid)
+            {
+                var c = CategoryRepository.Read(model.Id);
+                if (null == c)
+                {
+                    return NotFound();
+                }
+
+                var cat = new Category()
+                {
+                    Id = model.Id,
+                    Title = model.Title,
+                    RouteName = model.RouteName,
+                    Description = model.Description
+                };
+
+                var rows = CategoryRepository.Update(cat);
+                if (rows > 0)
+                {
+                    return RedirectToAction(nameof(Manage));
+                }
+                ModelState.AddModelError(string.Empty, "Create Category Failed on Data Layer.");
+            }
             return View();
         }
 
         [Authorize]
         public IActionResult Delete(int id)
         {
-            return View();
+            var cat = CategoryRepository.Read(id);
+            if (null != cat)
+            {
+                return View(cat);
+            }
+            return NotFound();
         }
 
         [Authorize, HttpPost]
