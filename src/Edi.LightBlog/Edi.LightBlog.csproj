@@ -13,10 +13,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Core\TwoStepsAuthenticator\**" />
+    <Content Remove="Core\TwoStepsAuthenticator\**" />
+    <EmbeddedResource Remove="Core\TwoStepsAuthenticator\**" />
+    <None Remove="Core\TwoStepsAuthenticator\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CommonMark.NET" Version="0.15.1" />
-    <PackageReference Include="Dapper" Version="1.50.4" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
-    <PackageReference Include="Microsoft.Data.SQLite" Version="2.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.4.1" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="4.4.0" />
@@ -28,11 +33,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Core\TwoStepsAuthenticator\" />
+    <Folder Include="Core\" />
+    <Folder Include="Models\" />
     <Folder Include="wwwroot\post-images\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Edi.LightBlog.Core\Edi.LightBlog.Core.csproj" />
+    <ProjectReference Include="..\Edi.LightBlog.Models\Edi.LightBlog.Models.csproj" />
     <ProjectReference Include="..\TwoStepsAuthenticator.NetStd\TwoStepsAuthenticator.NetStd.csproj" />
   </ItemGroup>
 

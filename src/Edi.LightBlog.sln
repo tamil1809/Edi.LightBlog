@@ -7,9 +7,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Edi.LightBlog", "Edi.LightB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TOTP-Tool", "TOTP-Tool", "{69C62530-1D6C-437B-812F-2FE440DC8C88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoStepsAuthenticator.NetStd", "TwoStepsAuthenticator.NetStd\TwoStepsAuthenticator.NetStd.csproj", "{55DD696D-96E7-4C72-BCC4-5825731B36CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoStepsAuthenticator.NetStd", "TwoStepsAuthenticator.NetStd\TwoStepsAuthenticator.NetStd.csproj", "{55DD696D-96E7-4C72-BCC4-5825731B36CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edi.LightBlog.TOTPUtils", "Edi.LightBlog.TOTPUtils\Edi.LightBlog.TOTPUtils.csproj", "{FBD5ACB2-6AC9-40AF-81DB-BE9153198DC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Edi.LightBlog.TOTPUtils", "Edi.LightBlog.TOTPUtils\Edi.LightBlog.TOTPUtils.csproj", "{FBD5ACB2-6AC9-40AF-81DB-BE9153198DC6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{B82ED897-AF59-4C3E-A9BD-2C81E3E3152F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{44E72AB6-4A03-4BDC-8CF8-A79020765CE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edi.LightBlog.Core", "Edi.LightBlog.Core\Edi.LightBlog.Core.csproj", "{E0342C66-94F9-4284-8A69-E406EADE1007}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edi.LightBlog.Models", "Edi.LightBlog.Models\Edi.LightBlog.Models.csproj", "{12F90732-3773-4F16-80F3-D77584B3D844}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +37,24 @@ Global
 		{FBD5ACB2-6AC9-40AF-81DB-BE9153198DC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBD5ACB2-6AC9-40AF-81DB-BE9153198DC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBD5ACB2-6AC9-40AF-81DB-BE9153198DC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0342C66-94F9-4284-8A69-E406EADE1007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0342C66-94F9-4284-8A69-E406EADE1007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0342C66-94F9-4284-8A69-E406EADE1007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0342C66-94F9-4284-8A69-E406EADE1007}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12F90732-3773-4F16-80F3-D77584B3D844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12F90732-3773-4F16-80F3-D77584B3D844}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12F90732-3773-4F16-80F3-D77584B3D844}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12F90732-3773-4F16-80F3-D77584B3D844}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{58A395B2-916B-4D24-AD8C-C54172FD0BDD} = {B82ED897-AF59-4C3E-A9BD-2C81E3E3152F}
+		{55DD696D-96E7-4C72-BCC4-5825731B36CB} = {44E72AB6-4A03-4BDC-8CF8-A79020765CE6}
 		{FBD5ACB2-6AC9-40AF-81DB-BE9153198DC6} = {69C62530-1D6C-437B-812F-2FE440DC8C88}
+		{E0342C66-94F9-4284-8A69-E406EADE1007} = {44E72AB6-4A03-4BDC-8CF8-A79020765CE6}
+		{12F90732-3773-4F16-80F3-D77584B3D844} = {44E72AB6-4A03-4BDC-8CF8-A79020765CE6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E9E1DF7-9497-4182-9420-BAEF430D7D5D}
