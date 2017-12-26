@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Copyright>(c) edi.wang</Copyright>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl>https://github.com/EdiWang/Edi.LightBlog</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
