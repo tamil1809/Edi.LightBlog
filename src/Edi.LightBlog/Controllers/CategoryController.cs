@@ -27,10 +27,12 @@ namespace Edi.LightBlog.Controllers
         {
             _accessor = accessor;
             CategoryRepository = new CategoryRepository();
+            PostCategoryAssociationRepository = new PostCategoryAssociationRepository();
         }
 
         public CategoryRepository CategoryRepository { get; set; }
 
+        public PostCategoryAssociationRepository PostCategoryAssociationRepository { get; set; }
 
         public IActionResult Index()
         {
@@ -143,7 +145,17 @@ namespace Edi.LightBlog.Controllers
         [ActionName("Delete")]
         public IActionResult DeleteConfirm(int id)
         {
-            return View();
+            var cat = CategoryRepository.Read(id);
+            if (null != cat)
+            {
+                // 1. Delete Associations
+                PostCategoryAssociationRepository.DeleteByCategoryId(id);
+
+                // 2. Delete Category itself
+                CategoryRepository.Delete(id);
+                return RedirectToAction(nameof(Manage));
+            }
+            return NotFound();
         }
 
         #endregion
