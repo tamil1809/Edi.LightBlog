@@ -43,18 +43,22 @@ namespace Edi.LightBlog.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> SignIn(SignInModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
                 var b = PerformTOTPAuthentication(model.TotpCode);
+#if DEBUG
+                b = true;
+#endif
                 if (b)
                 {
                     var claims = new List<Claim>
                     {
-                        new Claim("name", AppSettings.AdminName),
-                        new Claim("role","Administrators")
+                        new Claim(ClaimTypes.Name, AppSettings.AdminName),
+                        new Claim(ClaimTypes.Role,"Administrators")
                     };
 
                     var claimsIdentity = new ClaimsIdentity(
@@ -71,6 +75,7 @@ namespace Edi.LightBlog.Controllers
                         });
 
                     HttpContext.User = principal;
+                    var tokens = _antiforgery.GetTokens(HttpContext);
                     _antiforgery.GetAndStoreTokens(HttpContext);
 
                     return RedirectToLocal(returnUrl);
