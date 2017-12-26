@@ -19,7 +19,8 @@ namespace Edi.LightBlog.Models
         public string Description { get; set; }
 
         [Required, DataType(DataType.Text)]
-        [RegularExpression("/^[a-zA-Z]+$/")]
+        [RegularExpression("([a-zA-Z])\\w+")]
+        [MaxLength(16)]
         public string RouteName { get; set; }
     }
 }

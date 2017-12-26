@@ -40,7 +40,7 @@ namespace Edi.LightBlog
                         options.LoginPath = "/Account/SignIn/";
                     });
 
-            services.AddTransient<IClaimsTransformation, ClaimsTransformer>();
+            //services.AddTransient<IClaimsTransformation, ClaimsTransformer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
